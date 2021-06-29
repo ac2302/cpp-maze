@@ -12,6 +12,7 @@ struct Node
 
 	bool isVisited;
 	unsigned int distance;
+	bool hasPreviousNode;
 	int previousNode[2];
 };
 
@@ -36,4 +37,39 @@ int main()
 			}
 
 	// generating grid
+	Node grid[height][width];
+
+	for (int i = 0; i < height; i++)
+		for (int j = 0; j < width; j++)
+		{
+			if ((imageBuffer[i][j][0] == 0xff) && (imageBuffer[i][j][2] == 0xff) && (imageBuffer[i][j][2] == 0xff))
+			{
+				// pixel is a normal pixel
+				grid[i][j].type = 1;
+				grid[i][j].isVisited = false;
+				grid[i][j].hasPreviousNode = false;
+				grid[i][j].distance = -1;
+			}
+			else if ((imageBuffer[i][j][0] == 0xff) && (imageBuffer[i][j][2] == 0x00) && (imageBuffer[i][j][2] == 0x00))
+			{
+				// pixel is a start pixel
+				grid[i][j].type = 2;
+				grid[i][j].isVisited = false;
+				grid[i][j].hasPreviousNode = false;
+				grid[i][j].distance = 0;
+			}
+			else if ((imageBuffer[i][j][0] == 0x00) && (imageBuffer[i][j][2] == 0x00) && (imageBuffer[i][j][2] == 0xff))
+			{
+				// pixel is an end pixel
+				grid[i][j].type = 3;
+				grid[i][j].isVisited = false;
+				grid[i][j].hasPreviousNode = false;
+				grid[i][j].distance = 0;
+			}
+			else if ((imageBuffer[i][j][0] == 0xff) && (imageBuffer[i][j][2] == 0x00) && (imageBuffer[i][j][2] == 0x00))
+			{
+				// pixel is a wall pixel
+				grid[i][j].type = 0;
+			}
+		}
 }
