@@ -2,6 +2,14 @@
 
 struct Node
 {
+	/*
+		type = 0 // wall
+		type = 1 // normal cell
+		type = 2 // start pixel
+		type = 3 // end pixel 
+	 */
+	int type;
+
 	bool isVisited;
 	unsigned int distance;
 	int previousNode[2];
