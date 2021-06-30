@@ -72,4 +72,16 @@ int main()
 				grid[i][j].type = 0;
 			}
 		}
+
+	// starting the Djikstra's Shortest Path Algorithm
+	unsigned int unvisited = 0;
+	for (int i = 0; i < height; i++)
+		for (int j = 0; j < width; j++)
+			if (grid[i][j].type != 0)
+				unvisited++;
+
+	// starting the body of the algorithm
+	while (unvisited != 0)
+	{
+	}
 }
