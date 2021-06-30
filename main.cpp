@@ -81,8 +81,9 @@ int main()
 				unvisited++;
 
 	// starting the body of the algorithm
-	 int current[2];
-	 unsigned int currentDist;
+	int current[2];
+	int previous[] = {0, 0};
+	unsigned int currentDist;
 	while (unvisited != 0)
 	{
 		// finding the unvisited node with the least distance from start
@@ -91,13 +92,22 @@ int main()
 			for (int j = 0; j < width; j++)
 				if (!grid[i][j].isVisited)
 				{
-					if (grid[i][j].distance < currentDist) {
+					if (grid[i][j].distance < currentDist)
+					{
 						current[0] = i;
 						current[1] = j;
 						currentDist = grid[i][j].distance;
 					}
 				}
-		
-		
+
+		// marking the node as visited
+		grid[current[0]][current[1]].isVisited = true;
+		unvisited--;
+		// setting the previous node
+		grid[current[0]][current[1]].previousNode[0] = previous[0];
+		grid[current[0]][current[1]].previousNode[1] = previous[1];
+		// setting previous to current
+		previous[0] = current[0];
+		previous[1] = current[1];
 	}
 }
